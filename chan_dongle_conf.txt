@@ -1,0 +1,33 @@
+Installing and Configuring Chan_dongle
+
+1. git clone https://github.com/wdoekes/asterisk-chan-dongle.git
+
+2. cd asterisk-chan-dongle
+
+3. ./bootstrap
+
+4. ./configure --with-astversion=Current_ast_ver
+
+5. make
+
+6. nano /etc/asterisk/extensions.conf
+
+7. add exten => _X.,1,Dial(Dongle/dongle0/${EXTEN})
+
+8. [othersipserver-incoming]
+exten => _X.,1,Dial(Dongle/r1/${EXTEN})
+exten => _X.,n,Hangup
+
+9. /etc/asterisk/dongle.conf
+
+[general]
+interval=10
+; General settings for chan_dongle
+
+[dongle0]
+audio=/dev/ttyUSB1
+data=/dev/ttyUSB2
+imei=860872015466643
+imsi=404490299518966
+status_check=15
+reconnect_on_loss=yes

@@ -1,0 +1,35 @@
+Installing and Configuring Chan_mobile
+
+1. cd asterisk-*
+
+2. make menuselect
+
+3. select chan_mobile in modules
+
+4. sudo make
+
+5. sudo make install
+
+6. sudo make samples
+sudo make config
+sudo ldconfig
+
+7. sudo groupadd asterisk
+sudo useradd -r -d /var/lib/asterisk -g asterisk asterisk
+sudo usermod -aG audio,dialout asterisk
+sudo chown -R asterisk:asterisk /etc/asterisk
+sudo chown -R asterisk:asterisk /var/{lib,log,spool}/asterisk
+sudo chown -R asterisk:asterisk /usr/lib/asterisk
+
+8. sudo vim /etc/default/asterisk
+Remove # 
+AST_USER="asterisk"
+AST_GROUP="asterisk"
+
+9. sudo vim /etc/asterisk/asterisk.conf
+runuser = asterisk  
+rungroup = asterisk 
+
+10. sudo systemctl restart asterisk
+
+11. sudo asterisk -rvv
