@@ -33,3 +33,20 @@ rungroup = asterisk
 10. sudo systemctl restart asterisk
 
 11. sudo asterisk -rvv
+
+12. nano /etc/asterisk/chan_mobile.conf
+
+[general]
+interval=30
+
+ [adapter]
+id=hci1
+address=DC:A6:32:A5:DF:11
+
+[phone0]
+context=incoming-mobile
+address=60:8E:08:AE:6E:70
+adapter=hci1
+port=3
+
+13. sudo systemctl restart asterisk
